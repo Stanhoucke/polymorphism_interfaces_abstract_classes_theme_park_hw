@@ -43,4 +43,19 @@ public class RollercoasterTest {
     public void isAllowedTo__ReturnsFalse(){
         assertFalse(rollerCoaster.isAllowedTo(visitor1));
     }
+
+    @Test
+    public void hasDefaultPrice() {
+        assertEquals(8.40, rollerCoaster.defaultPrice(), 0.0);
+    }
+
+    @Test
+    public void priceFor__ReturnsDoubleForTallVisitor(){
+        assertEquals(16.80, rollerCoaster.priceFor(visitor2), 0.01);
+    }
+
+    @Test
+    public void priceFor__ReturnsDefaultPriceForNotTallVisitor(){
+        assertEquals(8.40, rollerCoaster.priceFor(visitor1), 0.0);
+    }
 }
