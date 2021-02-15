@@ -1,20 +1,25 @@
 import attractions.Dodgems;
 import attractions.RollerCoaster;
 import behaviours.IReviewed;
+import behaviours.ISecurity;
 import org.junit.Before;
 import org.junit.Test;
 import people.Visitor;
+import stalls.ParkingSpot;
+import stalls.TobaccoStall;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ThemeParkTest {
 
     ThemePark themePark;
     Dodgems dodgems;
     RollerCoaster rollerCoaster;
+    TobaccoStall tobaccoStall;
     Visitor visitor1;
 
     @Before
@@ -22,7 +27,8 @@ public class ThemeParkTest {
         themePark = new ThemePark();
         dodgems = new Dodgems("Bumper Cars", 5);
         rollerCoaster = new RollerCoaster("Blue Ridge", 10);
-        visitor1 = new Visitor(14, 1.2, 40.0);
+        tobaccoStall = new TobaccoStall("Jacks Drum", "Jack Jarvis", ParkingSpot.B1, 7);
+        visitor1 = new Visitor(16, 1.5, 40.0);
     }
 
     @Test
@@ -53,6 +59,16 @@ public class ThemeParkTest {
         themePark.visit(visitor1, dodgems);
         assertEquals(1, dodgems.getVisitCount());
         assertEquals(1, visitor1.countVisitedAttractions());
+    }
+
+    @Test
+    public void canGetAllAllowedForVisitor(){
+        themePark.addReviewed(rollerCoaster);
+        themePark.addReviewed(dodgems);
+        themePark.addReviewed(tobaccoStall);
+
+        int countAllowedReviewed = themePark.getAllAllowedFor(visitor1).size();
+        assertEquals(2, countAllowedReviewed);
     }
 
 }
