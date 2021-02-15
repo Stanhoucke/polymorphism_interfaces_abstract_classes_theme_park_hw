@@ -6,6 +6,7 @@ import org.junit.Test;
 import people.Visitor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,6 +34,18 @@ public class ThemeParkTest {
     public void canAddReviewed(){
         themePark.addReviewed(rollerCoaster);
         assertEquals(1, themePark.countAllReviewed());
+    }
+
+    @Test
+    public void canShowAllReviews(){
+        themePark.addReviewed(rollerCoaster);
+        themePark.addReviewed(dodgems);
+
+        HashMap<String, Integer> reviews = new HashMap<String, Integer>();
+        reviews.put(rollerCoaster.getName(), rollerCoaster.getRating());
+        reviews.put(dodgems.getName(), dodgems.getRating());
+
+        assertEquals(reviews, themePark.showAllReviews());
     }
 
     @Test
