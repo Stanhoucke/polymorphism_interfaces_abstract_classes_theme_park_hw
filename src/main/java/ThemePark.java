@@ -16,9 +16,16 @@ public class ThemePark {
         return this.allReviewed;
     }
 
+    public void addReviewed(IReviewed reviewed){
+        this.allReviewed.add(reviewed);
+    }
+
     public void visit(Visitor visitor, Attraction attraction){
         visitor.addVisitedAttraction(attraction);
         attraction.incrementVisitCount();
     }
 
+    public int countAllReviewed() {
+        return this.allReviewed.size();
+    }
 }

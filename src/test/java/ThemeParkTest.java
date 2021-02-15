@@ -30,6 +30,12 @@ public class ThemeParkTest {
     }
 
     @Test
+    public void canAddReviewed(){
+        themePark.addReviewed(rollerCoaster);
+        assertEquals(1, themePark.countAllReviewed());
+    }
+
+    @Test
     public void canVisit(){
         themePark.visit(visitor1, dodgems);
         assertEquals(1, dodgems.getVisitCount());
